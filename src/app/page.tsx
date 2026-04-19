@@ -2,55 +2,96 @@ import React from 'react';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0D0E15] text-[#e3e1ec] flex font-inter">
-      {/* Parameters */}
-      <aside className="w-80 border-r border-[#3b494b]/30 bg-[#1a1b22] p-8">
-        <h1 className="font-space-grotesk text-2xl font-bold text-[#FF003C] mb-8">LLM_SANDBOX</h1>
-        
-        <div className="space-y-8">
-          <div>
-            <div className="flex justify-between text-xs font-space-grotesk uppercase tracking-widest mb-4">
-              <span className="text-[#b9cacb]">Temperature</span>
-              <span className="text-[#FF003C]">0.7</span>
-            </div>
-            <input type="range" className="w-full accent-[#FF003C]" />
+    <main className="min-h-screen bg-[#050505] text-[#e5e2e1] font-inter">
+      {/* Dynamic Header */}
+      <nav className="fixed w-full z-50 bg-[#050505]/90 backdrop-blur-md border-b border-[#3b4b37]/30">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="font-space-grotesk text-2xl font-bold tracking-widest text-[#00FF41] uppercase">prompt_PROT</div>
+          <div className="hidden md:flex gap-8 font-space-grotesk text-sm uppercase tracking-widest text-[#84967e]">
+            <a href="#features" className="hover:text-[#00FF41] transition-colors">Features</a>
+            <a href="#pricing" className="hover:text-[#00FF41] transition-colors">Pricing</a>
+            <a href="#docs" className="hover:text-[#00FF41] transition-colors">Docs</a>
           </div>
-          <div>
-            <div className="flex justify-between text-xs font-space-grotesk uppercase tracking-widest mb-4">
-              <span className="text-[#b9cacb]">Max Tokens</span>
-              <span className="text-[#00F0FF]">2048</span>
-            </div>
-            <input type="range" className="w-full accent-[#00F0FF]" />
-          </div>
-          <div>
-            <div className="text-xs font-space-grotesk uppercase tracking-widest mb-4 text-[#b9cacb]">System Prompt</div>
-            <textarea className="w-full h-32 bg-[#0d0e15] border border-[#3b494b]/30 p-3 text-xs font-mono outline-none focus:border-[#FF003C] transition-colors" defaultValue="You are an expert AI auditor designed to analyze smart contracts for vulnerabilities." />
-          </div>
+          <button className="px-6 py-2 border border-[#00FF41] text-[#00FF41] font-mono text-sm hover:bg-[#00FF41] hover:text-[#050505] shadow-[0_0_10px_rgba(0,255,65,0.2)] transition-all">
+            INITIATE
+          </button>
         </div>
-      </aside>
+      </nav>
 
-      {/* Chat Output */}
-      <section className="flex-1 flex flex-col bg-[#0d0e15]">
-        <div className="flex-1 p-8 overflow-y-auto space-y-6">
-          <div className="bg-[#1a1b22] p-6 max-w-3xl ml-auto border border-[#3b494b]/30 rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl">
-            <p className="text-sm font-mono leading-relaxed">Analyze the following withdraw function for any potential reentrancy attacks.</p>
-          </div>
-          <div className="bg-[#1e1f27] p-6 max-w-3xl mr-auto border-l-2 border-[#FF003C] rounded-tr-2xl rounded-br-2xl rounded-bl-2xl shadow-[0_0_20px_rgba(255,0,60,0.05)]">
-            <p className="text-sm leading-relaxed mb-4">I have analyzed the provided code. A critical <strong className="text-[#FF003C]">Reentrancy Vulnerability</strong> exists on line 14.</p>
-            <pre className="bg-[#0d0e15] p-4 text-xs font-mono text-[#00F0FF]">
-              14: msg.sender.call{'{value: amount}'}("");
-            </pre>
-            <p className="text-sm leading-relaxed mt-4">The state variable  is updated after the external call, allowing a malicious contract to re-enter the function and drain funds before the balance is deduced.</p>
-          </div>
-        </div>
-        
-        <div className="p-6 border-t border-[#3b494b]/30 bg-[#1a1b22]">
-          <div className="relative">
-            <input type="text" className="w-full bg-[#0d0e15] border border-[#3b494b]/30 px-4 py-4 text-sm outline-none focus:border-[#FF003C]" placeholder="Enter prompt..." />
-            <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#FF003C] text-white px-6 py-2 text-xs font-space-grotesk tracking-widest uppercase hover:bg-[#ff525c] transition-colors">Submit</button>
+      {/* Hero */}
+      <section className="pt-40 pb-32 px-6 flex flex-col items-center justify-center text-center min-h-[80vh] relative overflow-hidden">
+         <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-[#00FF41] rounded-full mix-blend-screen filter blur-[150px] opacity-10 pointer-events-none"></div>
+         <div className="inline-block px-3 py-1 bg-[#131313] border border-[#3b4b37] text-[#84967e] font-mono text-xs mb-8">SYSTEM_STATUS: SECURE</div>
+         <h1 className="text-5xl md:text-7xl font-space-grotesk font-bold tracking-tighter mb-6 uppercase leading-tight">
+           THE ULTIMATE <br/><span className="text-[#00FF41] underline decoration-[#FF003C] underline-offset-8 decoration-4">prompt engineering sandbox</span>
+         </h1>
+         <p className="text-lg text-[#84967e] max-w-2xl mb-12">
+           Build an LLM testing environment. Use a split-screen layout: parameter sliders (temperature, tokens) on the left, chat output on the right.
+         </p>
+         <button className="px-12 py-4 bg-[#00FF41] text-[#003907] font-space-grotesk font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(0,255,65,0.6)] transition-all">
+           LAUNCH TERMINAL
+         </button>
+      </section>
+
+      {/* Features */}
+      <section id="features" className="py-32 bg-[#0e0e0e] px-6 relative">
+        <div className="absolute inset-0 bg-[linear-gradient(#3b4b37_1px,transparent_1px),linear-gradient(90deg,#3b4b37_1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.03]"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h2 className="text-3xl font-space-grotesk font-bold uppercase tracking-widest mb-16 text-[#00FF41] border-b border-[#3b4b37]/30 pb-4">Core Architecture</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-[#131313] p-8 border border-[#3b4b37]/30 hover:border-[#00FF41]/50 group transition-all">
+                <div className="text-3xl font-mono text-[#FF003C] mb-6 group-hover:text-[#00FF41] transition-colors">0{i}</div>
+                <h3 className="text-xl font-space-grotesk uppercase tracking-widest mb-4">Module {i}</h3>
+                <p className="text-[#84967e] text-sm">High-performance components designed for extreme data density and rapid execution. No bloated code. Just pure function.</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="py-32 px-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="p-10 border border-[#3b4b37]/50 bg-[#0e0e0e] flex flex-col">
+            <h3 className="text-2xl font-space-grotesk uppercase tracking-widest mb-2 text-[#84967e]">Base Node</h3>
+            <div className="text-4xl font-mono mb-8 text-[#e5e2e1]">./process_batch2_landing.sh / mo</div>
+            <ul className="space-y-4 font-mono text-sm text-[#84967e] mb-10 flex-1">
+              <li>+ Standard API Limits</li>
+              <li>+ Community Support</li>
+              <li>+ 99.9% Uptime</li>
+            </ul>
+            <button className="w-full py-3 border border-[#84967e] text-[#84967e] font-mono text-sm uppercase hover:bg-[#84967e] hover:text-[#050505] transition-colors">Deploy Base</button>
+          </div>
+          <div className="p-10 border border-[#00FF41] bg-[#131313] shadow-[0_0_30px_rgba(0,255,65,0.05)] flex flex-col relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-[#00FF41] text-[#003907] text-xs font-mono px-3 py-1 font-bold">RECOMMENDED</div>
+            <h3 className="text-2xl font-space-grotesk uppercase tracking-widest mb-2 text-[#00FF41]">Quantum Node</h3>
+            <div className="text-4xl font-mono mb-8 text-[#e5e2e1]">9 / mo</div>
+            <ul className="space-y-4 font-mono text-sm text-[#e5e2e1] mb-10 flex-1">
+              <li className="text-[#00FF41]">+ Unlimited API Calls</li>
+              <li>+ Dedicated SLA</li>
+              <li>+ Custom Integrations</li>
+              <li>+ Enterprise Security</li>
+            </ul>
+            <button className="w-full py-3 bg-[#00FF41] text-[#003907] font-mono font-bold text-sm uppercase hover:bg-white transition-colors">Deploy Quantum</button>
+          </div>
+        </div>
+      </section>
+
+      {/* Massive CTA */}
+      <section className="py-32 bg-[#FF003C] text-center px-6">
+        <h2 className="text-5xl md:text-7xl font-space-grotesk font-bold text-[#050505] uppercase tracking-tighter mb-8 leading-none">
+          EXECUTE NOW.
+        </h2>
+        <button className="px-12 py-5 bg-[#050505] text-[#FF003C] font-space-grotesk font-bold text-xl uppercase tracking-widest hover:bg-white hover:text-[#050505] transition-colors shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+          INITIALIZE SEQUENCE
+        </button>
+      </section>
+      
+      {/* Footer */}
+      <footer className="py-12 border-t border-[#3b4b37]/30 text-center font-mono text-xs text-[#84967e] bg-[#0e0e0e]">
+        <p>END OF FILE. prompt-engineering-sandbox © 2024 | SECURE_PROTOCOL_V1.0.4</p>
+      </footer>
     </main>
   );
 }
